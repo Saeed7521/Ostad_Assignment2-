@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="assignment4.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1339"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Movies" custom_title="0" dock_id="1" table="4,6:mainMovies"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011800ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">DROP TABLE IF EXISTS Movies;
+CREATE TABLE Movies (
+    MovieID INTEGER PRIMARY KEY,
+    Title TEXT NOT NULL,
+    Genre TEXT NOT NULL,
+    ReleaseYear INTEGER NOT NULL,
+    Rating REAL NOT NULL,
+    BoxOfficeRevenue INTEGER NOT NULL,
+    Director TEXT NOT NULL
+);
+
+INSERT INTO Movies (MovieID, Title, Genre, ReleaseYear, Rating, BoxOfficeRevenue, Director)
+VALUES
+(1, 'Inception', 'Sci-Fi', 2010, 8.8, 830000000, 'Christopher Nolan'),
+(2, 'Titanic', 'Romance', 1997, 7.8, 2200000000, 'James Cameron'),
+(3, 'The Godfather', 'Crime', 1972, 9.2, 134000000, 'Francis Ford Coppola'),
+(4, 'Avatar', 'Sci-Fi', 2009, 7.9, 2840000000, 'James Cameron'),
+(5, 'Interstellar', 'Sci-Fi', 2014, 8.6, 677000000, 'Christopher Nolan'),
+(6, 'Parasite', 'Thriller', 2019, 8.6, 264000000, 'Bong Joon Ho'),
+(7, 'The Dark Knight', 'Action', 2008, 9.0, 1000000000, 'Christopher Nolan'),
+(8, 'Schindler''s List', 'Drama', 1993, 9.0, 322000000, 'Steven Spielberg'),
+(9, 'The Shawshank Redemption', 'Drama', 1994, 9.3, 28300000, 'Frank Darabont'),
+(10, 'Pulp Fiction', 'Crime', 1994, 8.9, 213000000, 'Quentin Tarantino');</sql><sql name="SQL 2*">--Question1 
+SELECT *
+FROM Movies
+WHERE Director = 'Christopher Nolan';
+--Question2
+SELECT DISTINCT Genre
+FROM Movies;
+--Question3
+SELECT *
+FROM Movies
+ORDER BY Rating DESC
+LIMIT 5;
+--Question4
+SELECT *
+FROM Movies
+WHERE ReleaseYear &lt; 2000;
+--Question5
+SELECT Genre, COUNT(*) AS TotalMovies
+FROM Movies
+GROUP BY Genre;
+--Question6
+SELECT SUM(BoxOfficeRevenue) AS TotalRevenue
+FROM Movies
+WHERE Genre = 'Sci-Fi';
+--Question7
+SELECT Title
+FROM Movies
+WHERE Rating &gt; 8.5
+AND Rating &lt; 9.0;
+--Question8
+SELECT Title
+FROM Movies
+WHERE Title LIKE '%The%';
+--Question9
+SELECT *
+FROM Movies
+ORDER BY BoxOfficeRevenue DESC
+LIMIT 1;
+--Question10
+SELECT AVG(Rating) AS AverageRating
+FROM Movies
+WHERE ReleaseYear &gt; 2000;</sql><current_tab id="1"/></tab_sql></sqlb_project>
